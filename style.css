@@ -1,8 +1,4 @@
-/* ==========================================================================
-   GRAMME. — design tokens
-   Palette : encre / os / lime acide / rouille / béton
-   Type    : Archivo Black (display), JetBrains Mono (data), Inter (corps)
-   ========================================================================== */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700;800&display=swap');
 
@@ -52,7 +48,6 @@ button{font-family:inherit;cursor:pointer;}
   color:var(--lime);
 }
 
-/* ---------------------------------- layout shell ---------------------------------- */
 .wrap{max-width:1180px;margin:0 auto;padding:0 24px;}
 
 .topbar{
@@ -100,7 +95,6 @@ section{padding:100px 0;}
 .view{display:none;}
 .view.active{display:block;}
 
-/* ---------------------------------- hero ---------------------------------- */
 .hero{
   padding:64px 0 90px;
   border-bottom:1px solid var(--line);
@@ -166,14 +160,12 @@ h1.hero-title .hl{color:var(--lime);}
 .stats-strip .num{font-family:var(--display);font-size:1.9rem;color:var(--lime);}
 .stats-strip .lbl{font-family:var(--mono);font-size:.72rem;color:var(--bone-dim);text-transform:uppercase;letter-spacing:.06em;}
 
-/* ---------------------------------- section headers ---------------------------------- */
 .section-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:44px;gap:24px;flex-wrap:wrap;}
 .section-head h2{
   font-family:var(--display);font-size:clamp(1.8rem,3.4vw,2.6rem);margin:8px 0 0;text-transform:uppercase;
 }
 .section-head p{color:var(--bone-dim);max-width:44ch;margin:0;}
 
-/* ---------------------------------- product grid ---------------------------------- */
 .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:36px;}
 .filters button{
   background:var(--concrete);border:1px solid var(--line);color:var(--bone-dim);
@@ -241,7 +233,6 @@ h1.hero-title .hl{color:var(--lime);}
 .add-btn:hover{background:var(--lime);}
 .add-btn:disabled{background:var(--line);color:var(--bone-dim);cursor:not-allowed;}
 
-/* ---------------------------------- cart drawer ---------------------------------- */
 .overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);opacity:0;pointer-events:none;transition:opacity .25s;z-index:90;}
 .overlay.open{opacity:1;pointer-events:auto;}
 
@@ -278,7 +269,6 @@ h1.hero-title .hl{color:var(--lime);}
 .drawer-total{display:flex;justify-content:space-between;font-family:var(--mono);margin-bottom:14px;font-size:.95rem;}
 .drawer-total b{font-size:1.2rem;}
 
-/* ---------------------------------- checkout ---------------------------------- */
 .checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;}
 .panel{background:var(--concrete);border:1px solid var(--line);padding:28px;}
 .panel h3{font-family:var(--display);text-transform:uppercase;font-size:1.05rem;margin:0 0 18px;}
@@ -321,7 +311,6 @@ h1.hero-title .hl{color:var(--lime);}
   border:1px dashed var(--lime);display:inline-block;padding:14px 24px;
 }
 
-/* ---------------------------------- SAV ---------------------------------- */
 .sav-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:40px;}
 .sav-info-item{display:flex;gap:14px;padding:18px 0;border-bottom:1px solid var(--line);}
 .sav-info-item .k{font-family:var(--mono);color:var(--lime);font-size:.75rem;text-transform:uppercase;width:110px;flex-shrink:0;}
@@ -334,7 +323,6 @@ h1.hero-title .hl{color:var(--lime);}
 .status-paid{background:rgba(90,200,120,.12);color:#5AC878;border:1px solid #5AC878;}
 .status-cancelled{background:rgba(180,67,31,.12);color:var(--rust);border:1px solid var(--rust);}
 
-/* ---------------------------------- footer ---------------------------------- */
 footer{border-top:1px solid var(--line);padding:36px 0;}
 .footer-inner{display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:.72rem;color:var(--bone-dim);flex-wrap:wrap;gap:12px;}
 .admin-link{color:var(--steel);}
