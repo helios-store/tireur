@@ -1,122 +1,85 @@
-/* ==========================================================================
-   Données produits — servent de graine (seed) pour Firestore.
-   Si Firestore n'est pas configuré, l'app tourne quand même sur ces données
-   locales : tu peux tester tout le site avant de brancher Firebase.
-
-   Chaque produit n'a pas de "photo" figée : GRAMME. génère un visuel
-   d'étiquette de labo propre à chaque référence (3 vues glissables :
-   étiquette, fiche de dosage, tampon de lot). Tu pourras remplacer
-   `renderSlide()` par de vraies photos plus tard (voir README).
-   ========================================================================== */
-
 export const SEED_PRODUCTS = [
   {
-    id: "whey-isolate",
-    name: "Whey Isolate 90",
-    cat: "Protéine",
-    tagline: "Isolat filtré à froid, 23g de protéines / dose, digestion rapide.",
-    price: 39.90,
-    stock: 42,
-    maxStock: 60,
-    servings: "30 doses",
-    dosage: "25g / shaker 300ml",
-    accent: "#C8FF3D",
-    lot: "GR-WI90"
-  },
-  {
-    id: "creatine-mono",
-    name: "Créatine Monohydrate",
-    cat: "Force",
-    tagline: "Créapure, granulométrie fine, zéro additif, protocole simple.",
-    price: 19.90,
-    stock: 8,
-    maxStock: 50,
-    servings: "100 doses",
-    dosage: "5g / jour",
-    accent: "#8FD1FF",
-    lot: "GR-CRM5"
-  },
-  {
-    id: "bcaa-211",
-    name: "BCAA 2:1:1",
-    cat: "Récupération",
-    tagline: "Leucine dominante, anti-catabolisme pendant l'effort.",
-    price: 24.90,
-    stock: 27,
-    maxStock: 50,
-    servings: "45 doses",
-    dosage: "8g / entraînement",
-    accent: "#FFC24B",
-    lot: "GR-BC21"
-  },
-  {
-    id: "pre-workout",
-    name: "Pre-Workout Ignite",
-    cat: "Énergie",
-    tagline: "Caféine 200mg, citrulline, béta-alanine. Montée en 15 min.",
-    price: 29.90,
-    stock: 0,
-    maxStock: 40,
-    servings: "25 doses",
-    dosage: "1 dose / séance",
-    accent: "#FF6B6B",
-    lot: "GR-PWI2"
-  },
-  {
-    id: "omega-3",
-    name: "Oméga-3 EPA/DHA",
-    cat: "Santé",
-    tagline: "Huile de poisson concentrée, capsules sans reflux.",
-    price: 17.90,
-    stock: 55,
-    maxStock: 60,
-    servings: "90 capsules",
-    dosage: "2 capsules / jour",
-    accent: "#7BE0C8",
-    lot: "GR-OM3E"
-  },
-  {
-    id: "mass-gainer",
-    name: "Mass Gainer XL",
-    cat: "Prise de masse",
-    tagline: "750 kcal / dose, ratio glucides-protéines pensé pour la prise de masse propre.",
-    price: 44.90,
-    stock: 14,
-    maxStock: 40,
-    servings: "16 doses",
-    dosage: "150g / shaker 500ml",
-    accent: "#C8FF3D",
-    lot: "GR-MGX7"
-  },
-  {
-    id: "zma",
-    name: "ZMA Nuit",
-    cat: "Récupération",
-    tagline: "Zinc, magnésium, B6 — sommeil profond et récupération hormonale.",
-    price: 15.90,
-    stock: 33,
-    maxStock: 50,
-    servings: "60 caps",
-    dosage: "2 caps avant coucher",
-    accent: "#B99CFF",
-    lot: "GR-ZMA6"
-  },
-  {
-    id: "collagene",
-    name: "Collagène Marin",
-    cat: "Articulations",
-    tagline: "Peptides de collagène hydrolysé, soutien tendons et articulations.",
-    price: 27.90,
-    stock: 4,
+    id: "R10",
+    name: "Retatrutide 10mg",
+    cat: "Agoniste GLP-1",
+    tagline: "Retatrutide / Perte de poids, coupe faim.",
+    price: 65€,
+    stock: 30,
     maxStock: 30,
-    servings: "20 doses",
-    dosage: "10g / jour",
-    accent: "#FF9E6B",
-    lot: "GR-COLM"
-  }
+    accent: "#C8FF3D",
+    lot: "GR-R10"
+  },
+   {
+    id: "R20",
+    name: "Retatrutide 20mg",
+    cat: "Agoniste GLP-1",
+    tagline: "Retatrutide / Perte de poids, coupe faim.",
+    price: 85€,
+    stock: 20,
+    maxStock: 20,
+    accent: "#C8FF3D",
+    lot: "GR-R20"
+  },
+   {
+    id: "R30",
+    name: "Retatrutide 30mg",
+    cat: "Agoniste GLP-1",
+    tagline: "Retatrutide / Perte de poids, coupe faim.",
+    price: 110€,
+    stock: 19,
+    maxStock: 20,
+    accent: "#C8FF3D",
+    lot: "GR-R30"
+  },
+  {
+    id: "GHK-CU",
+    name: "GHK-CU 100mg",
+    cat: "Esthétisme",
+    tagline: "GHK-CU / Meilleure qualité de peau/cheveux.",
+    price: 50€,
+    stock: 28,
+    maxStock: 30,
+    accent: "#8FD1FF",
+    lot: "GR-GHKQ"
+  },
+  {
+    id: "MT2",
+    name: "MT2 10mg",
+    cat: "Esthétisme",
+    tagline: "MT2 / Effet bronzant.",
+    price: 60€,
+    stock: 19,
+    maxStock: 20,
+    accent: "#FFC24B",
+    lot: "GR-MT2"
+  },
+  {
+    id: "Bac Water",
+    name: "Bac Water 10mL",
+    cat: "Recomposition",
+    tagline: "Bac Water / Permet de reconstituer son peptide.",
+    price: 4€,
+    stock: 49,
+    maxStock: 50,
+    dosage: "Nb mL suivant le peptide.",
+    accent: "#FF6B6B",
+    lot: "GR-BACWAT"
+  },
+  {
+    id: "AA Water",
+    name: "AA Water 10mL",
+    cat: "Recomposition",
+    tagline: "AA Water / Permet de reconstituer son peptide (GHK-CU).",
+    price: 4€,
+    stock: 29,
+    maxStock: 30,
+    dosage: "Nb mL suivant le peptide.",
+    accent: "#7BE0C8",
+    lot: "GR-AAWAT"
+  },
 ];
 
-/* Génère 3 visuels SVG par produit : étiquette / fiche dosage / tampon de lot */
 export function productSlides(p){
   const esc = (s) => s.replace(/&/g,"&amp;").replace(/</g,"&lt;");
   const label = `
