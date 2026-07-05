@@ -142,5 +142,9 @@ export function productSlides(p){
       </g>
       <text x="18" y="240" font-family="monospace" font-size="7" fill="#4A4E52">NextGen Peptide : usage sportif</text>
     </svg>`;
-  return [label, spec, stamp];
+  const photo = p.images && p.images[0]
+  ? `<img src="images/${p.images[0]}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;">`
+  : null;
+
+return photo ? [photo, label, spec, stamp] : [label, spec, stamp];
 }
