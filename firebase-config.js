@@ -6,16 +6,16 @@
    ========================================================================== */
 
 export const firebaseConfig = {
-  apiKey: "REMPLACE_MOI",
-  authDomain: "REMPLACE_MOI.firebaseapp.com",
-  projectId: "REMPLACE_MOI",
-  storageBucket: "REMPLACE_MOI.appspot.com",
-  messagingSenderId: "REMPLACE_MOI",
-  appId: "REMPLACE_MOI"
+  apiKey: "AIzaSyCQLtiYI0R1jUvBvW4uuzCVzAM8_DAHEP8",
+  authDomain: "nextgenpeptides-cbb07.firebaseapp.com",
+  projectId: "nextgenpeptides-cbb07",
+  storageBucket: "nextgenpeptides-cbb07.firebasestorage.app",
+  messagingSenderId: "982721716285",
+  appId: "1:982721716285:web:f310d425c472e67cde4a54"
 };
 
 // UID Firebase Auth du/des compte(s) admin autorisés (voir firestore.rules)
-export const ADMIN_UIDS = ["REMPLACE_MOI_PAR_TON_UID_ADMIN"];
+export const ADMIN_UIDS = ["SiKBK55SvDeqSd96KgCMbZzaj8n1"];
 
 export const WALLETS = {
   BTC:  { label: "Bitcoin (BTC)",        address: "bc1qmdypexays9rfjc36usalyhsfm3k9yyxjr0gkdm" },
