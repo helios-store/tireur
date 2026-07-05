@@ -24,6 +24,17 @@
   .order-actions .cancel{border-color:var(--rust);color:var(--rust);}
   .order-actions .reset{border-color:var(--steel);}
   .top-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:30px;}
+  .tracking-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:12px;padding-top:12px;border-top:1px dashed var(--line);}
+  .tracking-input{
+    flex:1;min-width:200px;font-family:var(--mono);font-size:.8rem;padding:9px 12px;
+    background:var(--ink);border:1px solid var(--line);color:var(--bone);border-radius:var(--radius);
+  }
+  .tracking-send{
+    font-family:var(--mono);font-size:.72rem;text-transform:uppercase;letter-spacing:.04em;
+    padding:9px 14px;border-radius:var(--radius);border:1px solid var(--lime);color:var(--lime);background:var(--ink);
+  }
+  .tracking-send:disabled{opacity:.5;}
+  .tracking-sent-meta{font-family:var(--mono);font-size:.7rem;color:var(--bone-dim);width:100%;}
   .demo-warning{border:1px solid var(--rust);background:rgba(180,67,31,.08);color:var(--rust);padding:14px;font-family:var(--mono);font-size:.78rem;margin-bottom:26px;}
 </style>
 </head>

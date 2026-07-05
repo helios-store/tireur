@@ -1,4 +1,4 @@
-import { firebaseConfig, ADMIN_UIDS } from "./firebase-config.js";
+import { firebaseConfig, ADMIN_UIDS, EMAILJS_CONFIG } from "./firebase-config.js";
 
 const DEMO_MODE = firebaseConfig.apiKey === "REMPLACE_MOI";
 const $ = (s) => document.querySelector(s);
@@ -36,7 +36,8 @@ function orderRowHTML(o){
       ${o.items.map(i => `${i.name} × ${i.qty} — ${eur(i.price*i.qty)}`).join("<br>")}
     </div>
     <div class="order-meta" style="margin-bottom:10px;">
-      Total : <b style="color:var(--bone);">${eur(o.totalEUR)}</b> ·
+      Total : <b style="color:var(--bone);">${eur(o.totalEUR)}</b>
+      ${o.weightGrams ? ` · Poids colis : <b>${(o.weightGrams/1000).toFixed(2)} kg</b> · Port : <b>${eur(o.shippingEUR)}</b>` : ""} ·
       À recevoir : <b style="color:var(--lime);">${o.cryptoAmount} ${o.crypto}</b> ·
       Wallet : ${o.walletUsed}<br>
       ${o.address ? "Livraison : " + o.address + "<br>" : ""}
@@ -46,6 +47,13 @@ function orderRowHTML(o){
       <button class="ok" data-action="paye">Marquer payé</button>
       <button class="cancel" data-action="annule">Annuler</button>
       <button class="reset" data-action="en_attente">Remettre en attente</button>
+    </div>
+    <div class="tracking-row">
+      <input type="text" class="tracking-input" placeholder="Numéro de suivi Mondial Relay" value="${o.trackingNumber || ""}">
+      <button class="tracking-send">
+        ${o.trackingNumber ? "Renvoyer le numéro de suivi" : "Envoyer le numéro de suivi"}
+      </button>
+      ${o.trackingSentAt ? `<span class="tracking-sent-meta">Envoyé le ${new Date(o.trackingSentAt).toLocaleString("fr-FR")}</span>` : ""}
     </div>
   </div>`;
 }
@@ -72,6 +80,14 @@ async function renderOrders(){
       await updateStatus(code, btn.dataset.action);
     });
   });
+
+  $$(".order-row", list).forEach(row => {
+    const code = row.dataset.code;
+    const order = orders.find(o => o.orderNumber === code);
+    const input = $(".tracking-input", row);
+    const sendBtn = $(".tracking-send", row);
+    sendBtn?.addEventListener("click", () => sendTracking(order, input.value.trim(), sendBtn));
+  });
 }
 
 async function updateStatus(code, status){
@@ -84,6 +100,58 @@ async function updateStatus(code, status){
     const fsFns = window.__fsFns;
     await fsFns.updateDoc(fsFns.doc(window.__db, "orders", code), { status });
     toast(`Commande ${code} → ${status}`);
+  }
+}
+
+/* ---------------------------------- envoi email numéro de suivi (EmailJS) ---------------------------------- */
+let emailjsLib = null;
+async function getEmailJS(){
+  if (emailjsLib) return emailjsLib;
+  const mod = await import("https://cdn.jsdelivr.net/npm/@emailjs/browser@4/+esm");
+  emailjsLib = mod.default;
+  emailjsLib.init({ publicKey: EMAILJS_CONFIG.publicKey });
+  return emailjsLib;
+}
+
+async function persistTracking(code, trackingNumber, sentAt){
+  if (DEMO_MODE) {
+    const stored = JSON.parse(localStorage.getItem("gramme_orders") || "{}");
+    if (stored[code]) {
+      stored[code].trackingNumber = trackingNumber;
+      stored[code].trackingSentAt = sentAt;
+      localStorage.setItem("gramme_orders", JSON.stringify(stored));
+    }
+  } else {
+    const fsFns = window.__fsFns;
+    await fsFns.updateDoc(fsFns.doc(window.__db, "orders", code), { trackingNumber, trackingSentAt: sentAt });
+  }
+}
+
+async function sendTracking(order, trackingNumber, btn){
+  if (!trackingNumber) { toast("Renseigne un numéro de suivi avant d'envoyer."); return; }
+  if (!order.contact || !order.contact.includes("@")) {
+    toast("Le contact de cette commande n'est pas un email (Telegram ?) — envoi impossible via ce bouton.");
+    return;
+  }
+  const originalLabel = btn.textContent;
+  btn.disabled = true; btn.textContent = "Envoi…";
+  try {
+    const emailjs = await getEmailJS();
+    await emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.trackingTemplateId, {
+      to_email: order.contact,
+      customer_name: order.name || "client",
+      order_number: order.orderNumber,
+      tracking_number: trackingNumber
+    });
+    const sentAt = new Date().toISOString();
+    await persistTracking(order.orderNumber, trackingNumber, sentAt);
+    toast(`Numéro de suivi envoyé à ${order.contact}`);
+    renderOrders();
+  } catch (e){
+    console.error(e);
+    toast("Échec de l'envoi de l'email. Vérifie la config EmailJS.");
+  } finally {
+    btn.disabled = false; btn.textContent = originalLabel;
   }
 }
 

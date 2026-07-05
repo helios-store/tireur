@@ -31,3 +31,16 @@ export const RATES_EUR = {
   ETH: 0.00034,
   USDT: 1.08
 };
+
+/* ==========================================================================
+   EmailJS — envoi de l'email de suivi de colis depuis le panel admin,
+   sans backend. Crée un compte gratuit sur https://www.emailjs.com/,
+   connecte ta boîte mail (Gmail, Outlook...), crée un template avec les
+   variables {{to_email}}, {{order_number}}, {{tracking_number}}, {{customer_name}}.
+   Public Key : Account > General. Service ID et Template ID : Email Services / Email Templates.
+   ========================================================================== */
+export const EMAILJS_CONFIG = {
+  publicKey: "REMPLACE_MOI_PAR_TA_PUBLIC_KEY",
+  serviceId: "REMPLACE_MOI_PAR_TON_SERVICE_ID",
+  trackingTemplateId: "REMPLACE_MOI_PAR_TON_TEMPLATE_ID"
+};

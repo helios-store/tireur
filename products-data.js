@@ -9,6 +9,7 @@ export const SEED_PRODUCTS = [
     maxStock: 30,
     dosage: "10mg / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#C8FF3D",
     lot: "GR-R10"
   },
@@ -22,6 +23,7 @@ export const SEED_PRODUCTS = [
     maxStock: 20,
     dosage: "20mg / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#C8FF3D",
     lot: "GR-R20"
   },
@@ -35,6 +37,7 @@ export const SEED_PRODUCTS = [
     maxStock: 20,
     dosage: "30mg / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#C8FF3D",
     lot: "GR-R30"
   },
@@ -48,6 +51,7 @@ export const SEED_PRODUCTS = [
     maxStock: 30,
     dosage: "100mg / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#8FD1FF",
     lot: "GR-GHKQ"
   },
@@ -61,6 +65,7 @@ export const SEED_PRODUCTS = [
     maxStock: 20,
     dosage: "10mg / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#FFC24B",
     lot: "GR-MT2"
   },
@@ -74,10 +79,11 @@ export const SEED_PRODUCTS = [
     maxStock: 50,
     dosage: "10mL / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#FF6B6B",
     lot: "GR-BACWAT"
   },
-  {
+    {
     id: "AA Water",
     name: "AA Water 10mL",
     cat: "Recomposition",
@@ -87,6 +93,7 @@ export const SEED_PRODUCTS = [
     maxStock: 30,
     dosage: "10mL / flacon",
     servings: "1 flacon",
+    weightGrams: 520,
     accent: "#7BE0C8",
     lot: "GR-AAWAT"
   },
@@ -110,7 +117,7 @@ export function productSlides(p){
   const spec = `
     <svg viewBox="0 0 220 260" width="100%" height="100%">
       <rect x="6" y="6" width="208" height="248" fill="none" stroke="#2C2E31" stroke-width="1.5"/>
-      <text x="18" y="30" font-family="monospace" font-size="9" fill="${p.accent}">FICHE DE DOSAGE</text>
+      <text x="18" y="30" font-family="monospace" font-size="9" fill="${p.accent}">FICHE PRODUIT</text>
       <line x1="18" y1="40" x2="202" y2="40" stroke="#2C2E31"/>
       ${["Portion","Fréquence","Format","Réf. lot"].map((k,i)=>`
         <text x="18" y="${68+i*34}" font-family="monospace" font-size="8" fill="#B9B6AC">${k}</text>

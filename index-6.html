@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NextGen Peptides</title>
+<meta name="description" content="NextGen Peptides : Vente et envoie de peptides fiables et sécurisé.">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="logo"><span class="dot"></span>NextGen</div>
+    <nav class="nav">
+      <button data-view="home" class="active">Accueil</button>
+      <button data-view="shop">Produits</button>
+      <button data-view="sav">SAV</button>
+    </nav>
+    <button class="cart-btn" id="openCart">
+      Panier <span class="cart-count" id="cartCount">0</span>
+    </button>
+  </div>
+</header>
+
+<main>
+<section class="view active" id="view-home">
+  <div class="wrap hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-label">LOT EN COURS · <b>EXPÉDITION SOUS 48H</b></div>
+        <h1 class="hero-title">Nous.<br>avons <span class="hl">tout ce qu'il vous faut.</span></h1>
+        <p class="hero-sub">NextGen Peptide s'offre à vous en vous proposant des produits qui marchent vraiment et qui sont fiables. Vous hésitez ailleurs ? Tentez ici !</p>
+        <div class="hero-ctas">
+          <button class="btn btn-primary" data-view="shop">Voir les produits</button>
+          <button class="btn btn-ghost" data-view="sav">Suivre une commande</button>
+        </div>
+      </div>
+      <div class="hero-panel">
+        <div class="eyebrow" style="margin-bottom:14px;">FICHE DE LOT — EXEMPLE</div>
+        <div class="hero-panel-row"><span>Référence</span><span>GR-R10</span></div>
+        <div class="hero-panel-row"><span>Contrôle</span><span>Conforme</span></div>
+        <div class="hero-panel-row"><span>Paiement</span><span>BTC / ETH / USDT</span></div>
+        <div class="hero-panel-row"><span>Vérification</span><span>Manuelle, sous 24h</span></div>
+        <div class="hero-panel-row"><span>Suivi</span><span>Par numéro de commande</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap stats-strip">
+    <div><div class="num">7</div><div class="lbl">Références actives</div></div>
+    <div><div class="num">100%</div><div class="lbl">Paiement crypto</div></div>
+    <div><div class="num">&lt;24H</div><div class="lbl">Vérif. paiement</div></div>
+    <div><div class="num">48H</div><div class="lbl">Expédition</div></div>
+  </div>
+
+  <div class="wrap" style="padding:90px 0 0;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">SÉLECTION</span>
+        <h2>Best-sellers du lot</h2>
+      </div>
+      <button class="btn btn-ghost" data-view="shop">Catalogue complet →</button>
+    </div>
+    <div class="grid" id="homeGrid"></div>
+  </div>
+</section>
+
+<section class="view" id="view-shop">
+  <div class="wrap" style="padding-top:50px;">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">CATALOGUE</span>
+        <h2>Tous les produits</h2>
+      </div>
+    </div>
+    <div class="filters" id="filters"></div>
+    <div class="grid" id="shopGrid"></div>
+  </div>
+</section>
+
+<section class="view" id="view-checkout">
+  <div class="wrap" style="padding-top:50px;">
+    <div class="section-head">
+      <div><span class="eyebrow">FINALISATION</span><h2>Paiement en crypto</h2></div>
+    </div>
+
+    <div id="checkoutForm" class="checkout-grid">
+      <div class="panel">
+        <h3>01 — Coordonnées</h3>
+        <div class="field">
+          <label for="ctName">Nom / pseudo</label>
+          <input id="ctName" type="text" placeholder="Comment on t'appelle" required>
+        </div>
+        <div class="field">
+          <label for="ctContact">Email ou Telegram de contact *</label>
+          <input id="ctContact" type="text" placeholder="ex : ton@mail.com ou @tonpseudo" required>
+        </div>
+        <div class="field">
+          <label for="ctAddress">Adresse de livraison</label>
+          <textarea id="ctAddress" placeholder="Adresse complète, code postal, ville"></textarea>
+        </div>
+        <div class="field">
+          <label for="ctNote">Note (optionnel)</label>
+          <textarea id="ctNote" placeholder="Instructions particulières"></textarea>
+        </div>
+
+        <h3 style="margin-top:26px;">02 — Devise</h3>
+        <div class="crypto-choices" id="cryptoChoices"></div>
+
+        <div class="wallet-box" id="walletBox">
+          <div class="hint">Envoie exactement le montant ci-dessous à cette adresse :</div>
+          <div class="addr" id="walletAddr">—</div>
+          <button class="copy-btn" id="copyAddr">Copier l'adresse</button>
+          <div class="drawer-total" style="margin-top:14px;">
+            <span>Montant à envoyer</span><b id="cryptoAmount">—</b>
+          </div>
+          <div class="badge-warn">
+            Taux indicatif. La commande passe en <b>« en attente de vérification »</b> dès l'envoi déclaré ci-dessous, l'admin confirme manuellement la réception avant expédition. Conserve la preuve de la transaction.
+          </div>
+        </div>
+
+        <button class="btn btn-primary" id="confirmPayBtn" style="width:100%;justify-content:center;margin-top:20px;">
+          J'ai envoyé le paiement
+        </button>
+      </div>
+
+      <div class="panel">
+        <h3>Récapitulatif</h3>
+        <div id="checkoutItems"></div>
+        <div class="drawer-total" style="margin-top:18px;">
+          <span>Total (EUR)</span><b id="checkoutTotal">0,00 €</b>
+        </div>
+      </div>
+    </div>
+
+    <div id="orderConfirm" class="order-confirm" style="display:none;">
+      <span class="eyebrow">COMMANDE ENREGISTRÉE</span>
+      <h2>Ton numéro de commande</h2>
+      <div class="code" id="orderCodeDisplay">—</div>
+      <p style="color:var(--bone-dim);max-width:48ch;margin:0 auto;">
+        Note précieusement ce numéro : c'est lui qui te permet de suivre l'état de ta commande dans l'espace SAV, une fois le paiement vérifié par l'admin.
+      </p>
+      <button class="btn btn-ghost" style="margin-top:26px;" data-view="shop">Retour au catalogue</button>
+    </div>
+  </div>
+</section>
+
+<section class="view" id="view-sav">
+  <div class="wrap" style="padding-top:50px;">
+    <div class="section-head">
+      <div><span class="eyebrow">ASSISTANCE</span><h2>Service après-vente</h2></div>
+    </div>
+
+    <div class="sav-grid">
+      <div>
+        <div class="panel" style="margin-bottom:24px;">
+          <h3>Suivre une commande</h3>
+          <div class="field">
+            <label for="trackInput">Numéro de commande</label>
+            <input id="trackInput" type="text" placeholder="ex : GR-2607-K3M1">
+          </div>
+          <button class="btn btn-primary" id="trackBtn">Vérifier le statut</button>
+          <div class="track-result" id="trackResult"></div>
+        </div>
+
+        <div class="panel">
+          <h3>Contact direct</h3>
+          <div class="sav-info-item"><div class="k">Email</div><div class="v">A definir</div></div>
+          <div class="sav-info-item"><div class="k">Telegram</div><div class="v">A definir</div></div>
+          <div class="sav-info-item"><div class="k">Délai</div><div class="v">Réponse sous 24h ouvrées</div></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Envoyer un message au fournisseur</h3>
+        <div class="field">
+          <label for="savName">Nom / pseudo</label>
+          <input id="savName" type="text">
+        </div>
+        <div class="field">
+          <label for="savContact">Email ou Telegram *</label>
+          <input id="savContact" type="text" required>
+        </div>
+        <div class="field">
+          <label for="savOrder">Numéro de commande (si applicable)</label>
+          <input id="savOrder" type="text" placeholder="ex : GR-R10">
+        </div>
+        <div class="field">
+          <label for="savMsg">Message *</label>
+          <textarea id="savMsg" required placeholder="Décris ta demande le plus précisément possible"></textarea>
+        </div>
+        <button class="btn btn-primary" id="savSendBtn">Envoyer le message</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span>© NextGen Peptide.</span>
+    <a href="admin.html" class="admin-link">espace admin →</a>
+  </div>
+</footer>
+
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="cartDrawer">
+  <div class="drawer-head">
+    <h3>Ton panier</h3>
+    <button class="drawer-close" id="closeCart">✕</button>
+  </div>
+  <div class="drawer-items" id="cartItems"></div>
+  <div class="drawer-foot">
+    <div class="drawer-total"><span>Total</span><b id="cartTotal">0,00 €</b></div>
+    <button class="btn btn-primary" id="goCheckout" style="width:100%;justify-content:center;">Passer la commande</button>
+  </div>
+</aside>
+
+<div class="toast-stack" id="toastStack"></div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

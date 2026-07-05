@@ -1,5 +1,6 @@
 import { SEED_PRODUCTS, productSlides } from "./products-data.js";
 import { firebaseConfig, WALLETS, RATES_EUR } from "./firebase-config.js";
+import { cartWeightGrams, shippingPriceFor } from "./shipping-config.js";
 
 const DEMO_MODE = firebaseConfig.apiKey === "REMPLACE_MOI";
 
@@ -16,6 +17,8 @@ let PRODUCTS = [];
 let cart = JSON.parse(localStorage.getItem("gramme_cart") || "[]");
 let selectedCrypto = "USDT";
 let lastOrderTotal = 0;
+let lastShippingCost = 0;
+let lastWeightGrams = 0;
 
 const eur = (n) => n.toLocaleString("fr-FR", { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + " €";
 const $ = (sel, scope = document) => scope.querySelector(sel);
@@ -170,6 +173,12 @@ function cartTotal(){
 }
 function cartCount(){ return cart.reduce((s,l)=>s+l.qty,0); }
 
+function computeShipping(){
+  lastWeightGrams = cartWeightGrams(cart, PRODUCTS);
+  lastShippingCost = shippingPriceFor(lastWeightGrams);
+  return lastShippingCost;
+}
+
 function renderCart(){
   $("#cartCount").textContent = cartCount();
   const wrap = $("#cartItems");
@@ -227,7 +236,15 @@ function renderCheckout(){
     const p = PRODUCTS.find(x => x.id === l.id);
     return `<div class="hero-panel-row"><span>${p.name} × ${l.qty}</span><span>${eur(p.price*l.qty)}</span></div>`;
   }).join("");
-  lastOrderTotal = cartTotal();
+
+  const shipping = computeShipping();
+  const weightKg = (lastWeightGrams / 1000).toFixed(2);
+  $("#checkoutItems").innerHTML += `
+    <div class="hero-panel-row" style="color:var(--bone-dim);font-size:.85rem;">
+      <span>Livraison Mondial Relay (${weightKg} kg)</span><span>${eur(shipping)}</span>
+    </div>`;
+
+  lastOrderTotal = cartTotal() + shipping;
   $("#checkoutTotal").textContent = eur(lastOrderTotal);
   renderCryptoChoices();
 }
@@ -296,6 +313,9 @@ async function submitOrder(){
         const p = PRODUCTS.find(x => x.id === l.id);
         return { id: p.id, name: p.name, price: p.price, qty: l.qty };
       }),
+      subtotalEUR: cartTotal(),
+      shippingEUR: lastShippingCost,
+      weightGrams: lastWeightGrams,
       totalEUR: lastOrderTotal,
       crypto: selectedCrypto,
       cryptoAmount: Number((lastOrderTotal * (RATES_EUR[selectedCrypto] || 1)).toFixed(8)),
@@ -360,6 +380,11 @@ async function trackOrder(){
       ${order.items.map(i => `${i.name} × ${i.qty}`).join("<br>")}
     </div>
     <div style="margin-top:10px;">Total : ${eur(order.totalEUR)}</div>
+    ${order.trackingNumber ? `
+    <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line);">
+      <div style="color:var(--bone-dim);font-size:.8rem;margin-bottom:4px;">Numéro de suivi Mondial Relay</div>
+      <div style="font-family:var(--mono);color:var(--lime);">${order.trackingNumber}</div>
+    </div>` : ""}
   `;
 }
 $("#trackBtn").addEventListener("click", trackOrder);
