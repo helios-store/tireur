@@ -17,10 +17,9 @@ export const firebaseConfig = {
 // UID Firebase Auth du/des compte(s) admin autorisés (voir firestore.rules)
 export const ADMIN_UIDS = ["REMPLACE_MOI_PAR_TON_UID_ADMIN"];
 
-// Portefeuilles crypto utilisés pour encaisser les commandes
 export const WALLETS = {
-  BTC:  { label: "Bitcoin (BTC)",        address: "bc1qREMPLACE_MOI_PAR_TON_ADRESSE" },
-  ETH:  { label: "Ethereum (ETH)",       address: "0xREMPLACE_MOI_PAR_TON_ADRESSE" },
+  BTC:  { label: "Bitcoin (BTC)",        address: "bc1qmdypexays9rfjc36usalyhsfm3k9yyxjr0gkdm" },
+  ETH:  { label: "Ethereum (ETH)",       address: "0xfaF93f0dD632Eeb7589023C01A22eA0e46E76990" },
   USDT: { label: "USDT (réseau TRC20)",  address: "TREMPLACE_MOI_PAR_TON_ADRESSE" }
 };
 
