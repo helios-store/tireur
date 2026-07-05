@@ -2,6 +2,7 @@ export const SEED_PRODUCTS = [
   {
     id: "R10",
     name: "Retatrutide 10mg",
+    image :["R10.jpg"],
     cat: "Agoniste GLP-1",
     tagline: "Retatrutide / Perte de poids, coupe faim.",
     price: 65,
@@ -16,6 +17,7 @@ export const SEED_PRODUCTS = [
    {
     id: "R20",
     name: "Retatrutide 20mg",
+    image :["R20.jpg"],
     cat: "Agoniste GLP-1",
     tagline: "Retatrutide / Perte de poids, coupe faim.",
     price: 85,
@@ -30,6 +32,7 @@ export const SEED_PRODUCTS = [
    {
     id: "R30",
     name: "Retatrutide 30mg",
+    image :["R30.jpg"],
     cat: "Agoniste GLP-1",
     tagline: "Retatrutide / Perte de poids, coupe faim.",
     price: 110,
@@ -44,6 +47,7 @@ export const SEED_PRODUCTS = [
   {
     id: "GHK-CU",
     name: "GHK-CU 100mg",
+    image :["GHKCU.jpg"],
     cat: "Esthétisme",
     tagline: "GHK-CU / Meilleure qualité de peau/cheveux.",
     price: 50,
@@ -58,6 +62,7 @@ export const SEED_PRODUCTS = [
   {
     id: "MT2",
     name: "MT2 10mg",
+    image :["mt2.jpg"],
     cat: "Esthétisme",
     tagline: "MT2 / Effet bronzant.",
     price: 60,
@@ -72,6 +77,7 @@ export const SEED_PRODUCTS = [
   {
     id: "Bac Water",
     name: "Bac Water 10mL",
+    image :["BACW.jpg"],
     cat: "Recomposition",
     tagline: "Bac Water / Permet de reconstituer son peptide.",
     price: 4,
@@ -86,6 +92,7 @@ export const SEED_PRODUCTS = [
     {
     id: "AA Water",
     name: "AA Water 10mL",
+    image :["AA.jpg"],
     cat: "Recomposition",
     tagline: "AA Water / Permet de reconstituer son peptide (GHK-CU).",
     price: 4,
@@ -133,7 +140,7 @@ export function productSlides(p){
         <text y="-6" font-family="Archivo Black, sans-serif" font-size="11" fill="${p.accent}" text-anchor="middle">CONTRÔLÉ</text>
         <text y="12" font-family="monospace" font-size="9" fill="${p.accent}" text-anchor="middle">${p.lot}</text>
       </g>
-      <text x="18" y="240" font-family="monospace" font-size="7" fill="#4A4E52">GRAMME LABS — usage sportif</text>
+      <text x="18" y="240" font-family="monospace" font-size="7" fill="#4A4E52">NextGen Peptide : usage sportif</text>
     </svg>`;
   return [label, spec, stamp];
 }
