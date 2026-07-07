@@ -3,7 +3,7 @@ rules_version = '2';
 function isAdmin() {
   return request.auth != null &&
     request.auth.uid in [
-      "REMPLACE_MOI_PAR_TON_UID_ADMIN"
+      "SiKBK55SvDeqSd96KgCMbZzaj8n1"
     ];
 }
 
