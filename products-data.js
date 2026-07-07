@@ -45,7 +45,7 @@ export const SEED_PRODUCTS = [
     lot: "GR-R30"
   },
   {
-    id: "GHK-CU",
+    id: "Ghkcu",
     name: "GHK-CU 100mg",
     images :["GHKCU.jpg"],
     cat: "Esthétisme",
@@ -75,7 +75,7 @@ export const SEED_PRODUCTS = [
     lot: "GR-MT2"
   },
   {
-    id: "Bac Water",
+    id: "BAC WATER",
     name: "Bac Water 10mL",
     images :["BACW.jpg"],
     cat: "Recomposition",
@@ -90,7 +90,7 @@ export const SEED_PRODUCTS = [
     lot: "GR-BACWAT"
   },
     {
-    id: "AA Water",
+    id: "AA WATER",
     name: "AA Water 10mL",
     images :["AA.jpg"],
     cat: "Recomposition",
