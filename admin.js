@@ -85,8 +85,8 @@ async function renderOrders(){
   $$(".order-row", list).forEach(row => {
     const code = row.dataset.code;
     const order = orders.find(o => o.orderNumber === code);
-    const input = $(".tracking-input", row);
-    const sendBtn = $(".tracking-send", row);
+    const input = row.querySelector(".tracking-input");
+    const sendBtn = row.querySelector(".tracking-send");
     sendBtn?.addEventListener("click", () => sendTracking(order, input.value.trim(), sendBtn));
   });
 }
@@ -196,8 +196,8 @@ async function renderStock(){
 
   $$(".stock-row", list).forEach(row => {
     const id = row.dataset.id;
-    const input = $(".stock-input", row);
-    const saveBtn = $(".stock-save", row);
+    const input = row.querySelector(".stock-input");
+    const saveBtn = row.querySelector(".stock-save");
     input.addEventListener("input", () => input.classList.toggle("low", Number(input.value) <= 0));
     saveBtn.addEventListener("click", () => saveStock(id, input, saveBtn));
   });
