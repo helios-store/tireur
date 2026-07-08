@@ -45,7 +45,7 @@ export const SEED_PRODUCTS = [
     lot: "GR-R30"
   },
   {
-    id: "Ghkcu",
+    id: "GHKCU",
     name: "GHK-CU 100mg",
     images :["GHKCU.jpg"],
     cat: "Esthétisme",
