@@ -1,3 +1,4 @@
+
 import { firebaseConfig, ADMIN_UIDS, EMAILJS_CONFIG } from "./firebase-config.js";
 import { SEED_PRODUCTS } from "./products-data.js";
 
